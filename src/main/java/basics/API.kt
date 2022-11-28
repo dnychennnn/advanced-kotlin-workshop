@@ -9,13 +9,15 @@ class StudentController(
 
     @GetMapping("/student/{id}")
     fun getStudent(@PathVariable id: Long): StudentAPI {
-        TODO()
+        val student = studentRepository.findStudent(id)
+
+        if (student == null) throw ApiError(400, "No student found.")
+        return StudentAPI(student.firstName, student.lastName)
     }
 
     @GetMapping("/student")
-    fun getStudents(): List<StudentAPI> {
-        TODO()
-    }
+    fun getStudents(): List<StudentAPI> = studentRepository.getAllStudents().sortedBy { it.lastName }.map { StudentAPI(it.firstName, it.lastName) }
+
 }
 
 data class StudentAPI(

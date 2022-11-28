@@ -16,6 +16,11 @@ class MessageService(
     //     ...
     // }
 
+    fun sendMessage(to: String="all", title:String="", content: String=""): Unit {
+        val emailAddresses = findEmailAddresses(to)
+        emailAddresses.map { address: EmailAddress ->  messageSender.sendEmail(address, title, content) }
+    }
+
     private fun findEmailAddresses(to: String): List<EmailAddress> =
         if(to == "all") allEmailAddresses
         else allEmailAddresses.filter { it.address == to }
