@@ -23,9 +23,9 @@ interface FunctionsFunctional {
 
 class AnonymousFunctionalTypeSpecified : FunctionsFunctional {
     override val add: (Int, Int) -> Int = fun(num1, num2) = num1 + num2
-    override val printNum = TODO()
-    override val triple = TODO()
-    override val longestOf = TODO()
+    override val printNum: (Int) -> Unit = fun(num) = print(num)
+    override val triple: (Int) -> Int = fun(num) = num *3
+    override val longestOf: (String, String, String) -> String = TODO()
 }
 
 class AnonymousFunctionalTypeInferred : FunctionsFunctional {
@@ -37,9 +37,10 @@ class AnonymousFunctionalTypeInferred : FunctionsFunctional {
 
 class LambdaFunctionalTypeSpecified : FunctionsFunctional {
     override val add: (Int, Int) -> Int = { num1, num2 -> num1 + num2 }
-    override val printNum = TODO()
-    override val triple = TODO()
-    override val longestOf = TODO()
+    override val printNum: (Int) -> Unit = {num:Int -> print(num) }
+    override val triple: (Int) -> Int = {num:Int -> num*3}
+    override val longestOf: (String, String, String) -> String  = { str1, str2, str3 -> listOf(str1, str2, str3)
+        .maxByOrNull { it.length }!! }
 }
 
 class LambdaFunctionalTypeInferred : FunctionsFunctional {

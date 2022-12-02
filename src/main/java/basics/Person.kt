@@ -23,7 +23,7 @@ class Businessman(override val name: String, override val age: Int) : Person {
 
 }
 
-class Student(override val name: String, override val age: Int) : Person{
+class Student(override val name: String, override val age: Int) : Person {
     override fun helloText(): String {
         return "Hi"
     }
